@@ -1,0 +1,4 @@
+label,train,test
+Normal,25234,9495
+Heatwave,142,21
+Severe Heatwave,0,0

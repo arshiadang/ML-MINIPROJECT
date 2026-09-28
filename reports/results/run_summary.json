@@ -1,0 +1,32 @@
+{
+  "selected": {
+    "knn__metric": "euclidean",
+    "knn__n_neighbors": 1,
+    "knn__weights": "uniform"
+  },
+  "cv_macro_f1": 0.5533417772004381,
+  "inspection": {
+    "source": "IMD 1-degree annual Tmax GRD",
+    "end_year": 2025,
+    "grid_cells": 26,
+    "baseline_years": [
+      1991,
+      2014
+    ],
+    "train_years": [
+      2015,
+      2022
+    ],
+    "test_years": [
+      2023,
+      2024,
+      2025
+    ],
+    "missing_model_rows_dropped": 0,
+    "baseline_missing_readings": 0,
+    "rows": 34892,
+    "byte_order": "little-endian",
+    "region_rule_status": "Project geographic proxy; review data/region_lookup.csv"
+  },
+  "parity_rows": 20
+}

@@ -1,0 +1,215 @@
+{
+  "byte_order": "little-endian float32",
+  "files": [
+    {
+      "year": 1991,
+      "bytes": 1403060,
+      "sha256": "9ce94878b133f26f46e8e3d0359a4c9608dfaae3400aeaa6705868aa9546c3e5",
+      "source": "https://www.imdpune.gov.in/cmpg/Griddata/maxtemp.php"
+    },
+    {
+      "year": 1992,
+      "bytes": 1406904,
+      "sha256": "b72e8fc7c22230026fcc939d0d34818bc8eba1d5826cb84be69ddb57d422bf5d",
+      "source": "https://www.imdpune.gov.in/cmpg/Griddata/maxtemp.php"
+    },
+    {
+      "year": 1993,
+      "bytes": 1403060,
+      "sha256": "0ec8ea408f4fc78ea9cc0ef4249e6e1946f2a782b2d301a34a10bdb8fbdf47b5",
+      "source": "https://www.imdpune.gov.in/cmpg/Griddata/maxtemp.php"
+    },
+    {
+      "year": 1994,
+      "bytes": 1403060,
+      "sha256": "061ff05414464b436e883610c65be13e1feed7706517d8e654a50f02a8b66a0b",
+      "source": "https://www.imdpune.gov.in/cmpg/Griddata/maxtemp.php"
+    },
+    {
+      "year": 1995,
+      "bytes": 1403060,
+      "sha256": "adb862f37e89c92ead264fabb8fc0d93f168ac755291d25ca34dd337e05e881e",
+      "source": "https://www.imdpune.gov.in/cmpg/Griddata/maxtemp.php"
+    },
+    {
+      "year": 1996,
+      "bytes": 1406904,
+      "sha256": "19e36d1464b03d53f683edc0eba16a4b1fbf3946502deb95862e34b041ad4217",
+      "source": "https://www.imdpune.gov.in/cmpg/Griddata/maxtemp.php"
+    },
+    {
+      "year": 1997,
+      "bytes": 1403060,
+      "sha256": "afc7d81131af18d0f451877ec6d21bdac2bb39a5344a652dc89f63be9bff4e41",
+      "source": "https://www.imdpune.gov.in/cmpg/Griddata/maxtemp.php"
+    },
+    {
+      "year": 1998,
+      "bytes": 1403060,
+      "sha256": "e0bc505889ccb4049188e94745cef667c6c3b678c890635d9ac2ac2798ffcfaa",
+      "source": "https://www.imdpune.gov.in/cmpg/Griddata/maxtemp.php"
+    },
+    {
+      "year": 1999,
+      "bytes": 1403060,
+      "sha256": "eb9c2bcd85c838ff351226b46aadf214c5cee867b3607bdc29737add4739595b",
+      "source": "https://www.imdpune.gov.in/cmpg/Griddata/maxtemp.php"
+    },
+    {
+      "year": 2000,
+      "bytes": 1406904,
+      "sha256": "9c959ec9129b4edf3952da1b6a9cecdd26bc4307bab88a1e8521494faddd2565",
+      "source": "https://www.imdpune.gov.in/cmpg/Griddata/maxtemp.php"
+    },
+    {
+      "year": 2001,
+      "bytes": 1403060,
+      "sha256": "e8565453a49fe0741b3159b774724f319680e38411de29a15af40ff6e97759a8",
+      "source": "https://www.imdpune.gov.in/cmpg/Griddata/maxtemp.php"
+    },
+    {
+      "year": 2002,
+      "bytes": 1403060,
+      "sha256": "7c5086161618c597f088ae99bd1bdba3e9099216fdd55354513901b467377dd4",
+      "source": "https://www.imdpune.gov.in/cmpg/Griddata/maxtemp.php"
+    },
+    {
+      "year": 2003,
+      "bytes": 1403060,
+      "sha256": "12ce3042e4809b25fd0267cd3024dcc5c08f97ff4ed5be4732d28c6059c96fbb",
+      "source": "https://www.imdpune.gov.in/cmpg/Griddata/maxtemp.php"
+    },
+    {
+      "year": 2004,
+      "bytes": 1406904,
+      "sha256": "a66a1adad12f5cb6d132a956f70dbd6cdec2d87a7eceff8554c1116540e43d0e",
+      "source": "https://www.imdpune.gov.in/cmpg/Griddata/maxtemp.php"
+    },
+    {
+      "year": 2005,
+      "bytes": 1403060,
+      "sha256": "7b96f31dcb61b7c849a8e503c0bf1ef0e61b360d4f0341e0569fdda18804dde7",
+      "source": "https://www.imdpune.gov.in/cmpg/Griddata/maxtemp.php"
+    },
+    {
+      "year": 2006,
+      "bytes": 1403060,
+      "sha256": "7926666aae02b20aa1e9bc244d3d5115bd548a0d6df9a94754d4f67d00c41d5c",
+      "source": "https://www.imdpune.gov.in/cmpg/Griddata/maxtemp.php"
+    },
+    {
+      "year": 2007,
+      "bytes": 1403060,
+      "sha256": "1b4a760583bae5a9979f18a4ca82d03f2ea321d21b5035df9cc8de66762fb1a9",
+      "source": "https://www.imdpune.gov.in/cmpg/Griddata/maxtemp.php"
+    },
+    {
+      "year": 2008,
+      "bytes": 1406904,
+      "sha256": "a80bfd892b2a471d1044faa24414bc9dc93b491fae51de000c010538d3b4f729",
+      "source": "https://www.imdpune.gov.in/cmpg/Griddata/maxtemp.php"
+    },
+    {
+      "year": 2009,
+      "bytes": 1403060,
+      "sha256": "13db294a906e25cbf484b01e294a3c089bae441353cee2b39a5e4dd26ff8bab1",
+      "source": "https://www.imdpune.gov.in/cmpg/Griddata/maxtemp.php"
+    },
+    {
+      "year": 2010,
+      "bytes": 1403060,
+      "sha256": "7d82ecb95f82a4606f115c6674b18a34e906a479805f021fc0b324a5b3bd3795",
+      "source": "https://www.imdpune.gov.in/cmpg/Griddata/maxtemp.php"
+    },
+    {
+      "year": 2011,
+      "bytes": 1403060,
+      "sha256": "642d337d4aa4ab0c4b167d04b923b3ec285a29d79920d5a8d3e5747953b7ccf2",
+      "source": "https://www.imdpune.gov.in/cmpg/Griddata/maxtemp.php"
+    },
+    {
+      "year": 2012,
+      "bytes": 1406904,
+      "sha256": "0f55a48c4ca1b6558e60bbb2047e0a7cfb5ff720c43c7cc39fca892b4754ef3c",
+      "source": "https://www.imdpune.gov.in/cmpg/Griddata/maxtemp.php"
+    },
+    {
+      "year": 2013,
+      "bytes": 1403060,
+      "sha256": "80c0e0162343cb6808db7bde56eab3222322a64d69bc493078fe05a9fb38af77",
+      "source": "https://www.imdpune.gov.in/cmpg/Griddata/maxtemp.php"
+    },
+    {
+      "year": 2014,
+      "bytes": 1403060,
+      "sha256": "68f6b0b7a6e4ed4e12ac13fd3e0884244b5d6b330fedee1ac43a4bd419ec9fd7",
+      "source": "https://www.imdpune.gov.in/cmpg/Griddata/maxtemp.php"
+    },
+    {
+      "year": 2015,
+      "bytes": 1403060,
+      "sha256": "1f59cb38f0412c31f00ed5b0283ce3c8d4aecb33f7c798037b23eda7a2da1fc9",
+      "source": "https://www.imdpune.gov.in/cmpg/Griddata/maxtemp.php"
+    },
+    {
+      "year": 2016,
+      "bytes": 1406904,
+      "sha256": "4cb547522de59e6af4a93b5a50810de406004b2553921337270f499db4e0c12e",
+      "source": "https://www.imdpune.gov.in/cmpg/Griddata/maxtemp.php"
+    },
+    {
+      "year": 2017,
+      "bytes": 1403060,
+      "sha256": "ab6f1602d4bf3d2fb72af1c95123135715d03363ffcff2edba290460be348aa2",
+      "source": "https://www.imdpune.gov.in/cmpg/Griddata/maxtemp.php"
+    },
+    {
+      "year": 2018,
+      "bytes": 1403060,
+      "sha256": "d3177ec1a2f39235834a7ab5fa5120866bb9106f1fc2c06d8eba0d5bcdf7e555",
+      "source": "https://www.imdpune.gov.in/cmpg/Griddata/maxtemp.php"
+    },
+    {
+      "year": 2019,
+      "bytes": 1403060,
+      "sha256": "562086409f4db9ca32b6d554e2cb209926c4caf9892d7b5385195b254e0576ab",
+      "source": "https://www.imdpune.gov.in/cmpg/Griddata/maxtemp.php"
+    },
+    {
+      "year": 2020,
+      "bytes": 1406904,
+      "sha256": "f77b8b50582c400eca0510a1738050ab10bf628b648f5a7a9e9d3c7842637ba8",
+      "source": "https://www.imdpune.gov.in/cmpg/Griddata/maxtemp.php"
+    },
+    {
+      "year": 2021,
+      "bytes": 1403060,
+      "sha256": "d869f0277dcc3b2038421f3a20a2ebf82cd7889dd553742577eda8f7603036dc",
+      "source": "https://www.imdpune.gov.in/cmpg/Griddata/maxtemp.php"
+    },
+    {
+      "year": 2022,
+      "bytes": 1403060,
+      "sha256": "b8340004e3c13e7b1b0a9ff14d03771bbfe048b64db92fb7e23260c2f52ca214",
+      "source": "https://www.imdpune.gov.in/cmpg/Griddata/maxtemp.php"
+    },
+    {
+      "year": 2023,
+      "bytes": 1403060,
+      "sha256": "3279af28be8f222970dc0a48cb9530228ca55ae136a26020291de59d618d982b",
+      "source": "https://www.imdpune.gov.in/cmpg/Griddata/maxtemp.php"
+    },
+    {
+      "year": 2024,
+      "bytes": 1406904,
+      "sha256": "de50b8732a3e0fd7dea29a9c5604ca78b5c02e78b8164fb20ad2f6e00ed4c017",
+      "source": "https://www.imdpune.gov.in/cmpg/Griddata/maxtemp.php"
+    },
+    {
+      "year": 2025,
+      "bytes": 1403060,
+      "sha256": "673775eafe685d180c5d7a19018287599697a3f6800332470ab27ca512bd4b88",
+      "source": "https://www.imdpune.gov.in/cmpg/Griddata/maxtemp.php"
+    }
+  ]
+}

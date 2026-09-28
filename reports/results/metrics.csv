@@ -1,0 +1,3 @@
+,macro_f1,severe_recall,accuracy,severe_support
+KNN,0.5998595900028082,,0.9991593106347205,0.0
+Majority baseline,0.3329651254536847,,0.9977931904161412,0.0

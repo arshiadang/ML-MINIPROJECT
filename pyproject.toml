@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "heatwave"
+version = "0.1.0"
+description = "Maharashtra heatwave severity classification with KNN"
+requires-python = ">=3.11,<3.14"
+
+[tool.setuptools.packages.find]
+include = ["heatwave*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
