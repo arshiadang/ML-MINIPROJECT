@@ -102,6 +102,8 @@ noise_mean.to_csv(OUT / "noise_mean.csv", index=False)
 noise.groupby(["k", "sigma", "comparison"])[["macro_f1", "severe_recall"]].agg(["mean", "std"]).to_csv(OUT / "noise_summary.csv")
 display(noise_mean)
 figure(fig, "noise_robustness")''')
+md("## Saved-results sanity review\nMap the geographic proxy, compare the K curve by fold, and distinguish per-class from macro-F1. No additional fitting occurs in this section.")
+code("from heatwave.audit import review_saved_results\nreview, fold_review, severe_noise_support = review_saved_results(ROOT)\ndisplay(review)\ndisplay(fold_review)\ndisplay(severe_noise_support)\nfrom IPython.display import Image\ndisplay(Image(filename=str(OUT / 'region_lookup_map.png')))")
 md('''## Fresh-process parity and report
 The artifact contains the pipeline, label map, input columns and exact scikit-learn version. The app imports the same package and calls the pipeline directly. The neighbor table reports counts and weighted vote shares, which are not calibrated probabilities.''')
 code('''fixed = test[INPUT_COLUMNS].iloc[::max(1, len(test)//20)].head(20)

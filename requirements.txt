@@ -12,4 +12,5 @@ nbformat==5.10.4
 nbclient==0.10.2
 ipykernel==6.29.5
 pytest==8.3.5
+pydeck==0.9.3
 -e .

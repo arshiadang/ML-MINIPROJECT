@@ -1,0 +1,4 @@
+sigma,seeds,seeds_with_severe,min_severe_cases,max_severe_cases,mean_defined_severe_recall
+0.5,5,4,0,1,0.0
+1.0,5,5,2,6,0.0
+2.0,5,5,47,68,0.0

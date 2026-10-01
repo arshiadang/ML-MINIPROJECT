@@ -42,6 +42,16 @@ The Severe class has zero support in both splits. Training provides no Severe ne
 
 The lookup in `data/region_lookup.csv` uses this transparent project proxy: longitude <74°E is coastal; 74≤longitude<75°E and latitude<20°N is hilly; remaining cells are plains. It is a coarse location proxy without elevation or coastline-distance validation. It needs team review. Changing it requires relabeling and rerunning all results.
 
+### Geographic review of the region proxy
+
+![Maharashtra region lookup map](results/region_lookup_map.png)
+
+Figure R. All 26 grid centres on the actual Maharashtra boundary, colored by the stored region lookup. Source: saved geoBoundaries polygon; dashed lines show the project's longitude/latitude cutoffs.
+
+The map shows 5 coastal labels along the western longitude column, 3 hilly labels in the next column below 20°N, and 18 plains labels elsewhere. All centres pass the polygon check, the stored lookup agrees with the processed feature-cell metadata, and it exactly implements the documented proxy. Visual inspection makes the limitation explicit: these are rectangular coordinate bands, not a coastline-distance or terrain classification. In particular, the northern coastal-assigned point at 20.5°N, 73.5°E and the hilly band merit geographic review rather than automatic acceptance as physical terrain types.
+
+This completes a positional and implementation sanity check, not geographic validation. The boundary map has no elevation or terrain layer and cannot establish whether the names are physically accurate. The lookup and model remain unchanged; the team still needs to endorse the proxy or authorize a geographic revision with relabeling and retraining.
+
 ## 5. Pipeline and experiment
 
 The single saved scikit-learn Pipeline takes date, latitude, longitude, region type, Tmax and normal Tmax. FeatureBuilder recomputes departure and maps month/day to 2001 to obtain day-of-year. Seasonal features are sin(2π·doy365/365) and cos(2π·doy365/365), making March 1 day 60 in leap and non-leap years alike.
@@ -51,6 +61,12 @@ StandardScaler fits Tmax, departure, sine, cosine, latitude and longitude. OneHo
 Training years are 2015–2022 and testing years are 2023–2025. Leave-one-year-out validation uses eight training folds. Each fold refits the entire pipeline. Search includes K=1,3,…,25, Euclidean/Manhattan distance, and uniform/distance weighting (52 configurations). Selection uses macro-F1 over the explicit labels Normal, Heatwave, Severe. There is no resampling. NumPy seeds for noise are fixed.
 
 Selected parameters: **K=1, euclidean, uniform weighting**. Cross-validated macro-F1: **0.5533**. Deterministic first-in-grid ordering resolves exact ties.
+
+### K-curve sanity check
+
+The Euclidean/uniform validation curve has its highest observed mean at K=1: 0.553342. The next-highest K on that curve is K=5: 0.535592, a gap of 0.017749. The curve is not flat. K=1 wins 3 of the eight paired held-out-year comparisons with that runner-up, ties 5, and loses 0 (see `results/k_fold_review.csv`).
+
+This is an empirical best mean, not evidence of a statistically distinct optimum. Fold standard deviations are about 0.10, and the folds' training sets overlap. The Euclidean lead over Manhattan at K=1 is only 0.000260. Uniform and distance weights tie at K=1 because only one neighbour votes; deterministic grid ordering selects uniform. K=1 is defensible under the stated selection rule, while the metric/weighting distinction should not be overstated. Accuracy is nearly flat because Normal dominates; macro-F1 reveals the K sensitivity.
 
 ### Top grid-search configurations
 
@@ -79,6 +95,14 @@ Figure 1. Training-fold versus leave-one-year-out accuracy and macro-F1 with Euc
 | --- | --- | --- | --- | --- |
 | KNN | 0.5999 | N/A | 0.9992 | 0.0000 |
 | Majority baseline | 0.3330 | N/A | 0.9978 | 0.0000 |
+
+### Why 0.80, 0.90 and 0.60 are all different metrics
+
+**0.80 is the F1 score for Heatwave alone**, treating Heatwave as the positive class (precision 0.8421, recall 0.7619). It is not two-class macro-F1. Normal has F1 0.999579.
+
+**Supported two-class macro-F1 is 0.899789 (about 0.90)**: (Normal F1 + Heatwave F1) / 2. **The predeclared three-class macro-F1 is 0.599860 (about 0.60)**: (Normal F1 + Heatwave F1 + 0) / 3. The zero term is the scoring convention for the absent Severe class; it is not a measured Severe F1. The same predictions produce all three values. The three-class score remains the primary protocol metric, and the two-class score supplies context rather than replacing it after evaluation.
+
+The model makes 8 held-out errors (5 missed Heatwaves and 3 false alarms). All lie within 0.25°C of a candidate rule threshold (largest recorded distance 0.0702°C). This supports a threshold-local error interpretation. The distance is a diagnostic proxy, so it does not prove the errors are harmless or establish forecast performance.
 
 ### KNN per-class metrics
 
@@ -117,6 +141,12 @@ Gaussian noise with σ=0.5,1,2°C perturbs only test Tmax. Normal temperature re
 ![Noise robustness](results/noise_robustness.png)
 
 Figure 6. Mean macro-F1 and Severe recall over five seeds. Predictions versus original labels measure stability. Predictions versus recomputed rules measure rule fidelity. Noisy rules versus original labels provide the reference for target changes alone. Gaps in Severe curves mean undefined recall with no Severe ground truth. If noise creates Severe labels, recall against recomputed rules can be zero because training contained no Severe samples.
+
+### What zero Severe recall under noise actually means
+
+The saved results already contain zero recall against noisy, recomputed Severe labels. For selected K=1, the Severe counts across seeds are **0–1 at σ=0.5°C**, **2–6 at σ=1°C**, and **47–68 at σ=2°C**. Every run with Severe support has recall **0.0000**: no Severe training neighbours exist, so KNN cannot reproduce the Severe labels created by noisy inputs. This is a demonstrated coverage limitation, not an undefined metric when the noisy target does contain Severe examples.
+
+At σ=0.5°C, seed 23 has zero Severe cases and its recall is N/A. The reported mean 0.0000 averages the **four defined recalls**, not five zeros. All five recalls are defined for σ=1°C and σ=2°C. Against original labels, Severe recall remains N/A at every noise level because those labels have zero Severe support. `results/noise_severe_support.csv` records the support range and defined-seed count for each sigma. The same structural inability applies at every tested K; increasing K cannot introduce a class absent from training.
 
 ### Selected K noise results
 

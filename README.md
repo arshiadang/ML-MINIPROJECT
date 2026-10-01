@@ -75,3 +75,13 @@ The artifact requires the importable `heatwave==0.1.0` source and scikit-learn 1
 - Srivastava, Rajeevan and Kshirsagar (2009), [doi:10.1002/asl.232](https://doi.org/10.1002/asl.232).
 - [geoBoundaries India ADM1](https://www.geoboundaries.org/api/current/gbOpen/IND/ADM1/), underlying DataMeet India community / Election Commission of India. CC BY 2.5 India. The exact boundary revision and attribution are preserved in `data/boundaries/source.json`.
 - `reports/design_spec.md`: supplied approved design, revision 2.
+
+## Review updates and revised interface
+
+The app now separates classification, model evidence, the region map and method/data notes. Example readings, an immediate departure calculation and explicit model/rule disagreement make the demo easier to inspect. Changed inputs hide the previous prediction until you classify again.
+
+The report explains the different F1 scores: **0.80 Heatwave-only F1**, **0.899789 macro-F1 for Normal and Heatwave**, and **0.599860 for the predeclared three-class convention**. The K review compares saved year-fold results, and the noise review records which seeds actually have Severe support. A zero-support run stays N/A.
+
+`python scripts/refresh_review.py` regenerates the map, review tables and written report from saved evidence without retraining. The same review is included as an executed section of `notebooks/analysis.ipynb` and its source generator. New artifacts are `region_lookup_map.png`, `k_fold_review.csv`, `noise_severe_support.csv`, and `sanity_review.json` under `reports/results/`.
+
+The geographic review checks positions and proxy consistency on the actual state boundary. It does **not** validate terrain or distance from the coast. In particular, the northern coastal assignment and hilly column warrant team review. The existing model artifact and region lookup remain unchanged.

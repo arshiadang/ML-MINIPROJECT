@@ -1,0 +1,25 @@
+{
+  "heatwave_f1": 0.8,
+  "normal_f1": 0.9995787700084248,
+  "supported_macro_f1": 0.8997893850042125,
+  "fixed_three_class_macro_f1": 0.5998595900028082,
+  "k_curve_best": 1,
+  "k_curve_best_score": 0.5533417772004381,
+  "k_curve_runner": 5,
+  "k_curve_runner_score": 0.5355924482876875,
+  "k_curve_gap": 0.017749328912750606,
+  "k1_fold_wins": 3,
+  "fold_ties": 5,
+  "k1_fold_losses": 0,
+  "best_metric_gap": 0.00026001646516937704,
+  "region_counts": {
+    "plains": 18,
+    "coastal": 5,
+    "hilly": 3
+  },
+  "all_cells_inside": true,
+  "lookup_matches_processed": true,
+  "lookup_matches_proxy": true,
+  "error_count": 8,
+  "max_error_threshold_distance": 0.0701924324035658
+}

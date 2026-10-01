@@ -160,4 +160,10 @@ Person 1: acquisition, normals, labels, region lookup and class counts. Person 2
 - geoBoundaries India ADM1 metadata: https://www.geoboundaries.org/api/current/gbOpen/IND/ADM1/ . Underlying source and attribution: DataMeet India community, Election Commission of India; CC BY 2.5 India. Exact source URL is saved with the boundary.
 - User-supplied Final Design Spec, revision 2, included as `reports/design_spec.md`.
 '''
+    from .audit import review_sections
+    sections = review_sections(root)
+    text = text.replace("## 5. Pipeline and experiment", sections["map"] + "\n## 5. Pipeline and experiment")
+    text = text.replace("### Top grid-search configurations", sections["k"] + "\n### Top grid-search configurations")
+    text = text.replace("### KNN per-class metrics", sections["metrics"] + "\n### KNN per-class metrics")
+    text = text.replace("### Selected K noise results", sections["noise"] + "\n### Selected K noise results")
     (root / "reports/report.md").write_text(text)
