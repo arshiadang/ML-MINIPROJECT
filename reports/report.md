@@ -40,7 +40,7 @@ These rules are our operationalisation and have not been verified against IMD's 
 
 The Severe class has zero support in both splits. Training provides no Severe neighbours, so the deployed KNN cannot output Severe. With the fixed three-class macro-F1 convention, even perfect predictions of observed classes have a maximum macro-F1 of 2/3. Zero-support class metrics in raw sklearn tables are placeholders, not measured Severe performance. Severe recall is explicitly N/A here and in the headline evaluation. There are only 21 Heatwave test observations, so one error changes Heatwave recall by approximately 4.76 percentage points. The team should review task feasibility before presenting this as a complete three-class classifier. We retain the locked split and rules, and disclose this limitation rather than altering them after seeing test results.
 
-The lookup in `data/region_lookup.csv` uses this transparent project proxy: longitude <74°E is coastal; 74≤longitude<75°E and latitude<20°N is hilly; remaining cells are plains. It is a coarse location proxy without elevation or coastline-distance validation. It needs team review. Changing it requires relabeling and rerunning all results.
+The lookup in `data/region_lookup.csv` uses this transparent project proxy: longitude <74°E is coastal; 74≤longitude<75°E and latitude<20°N is hilly; remaining cells are plains. It is a coarse location proxy without elevation or coastline-distance validation. Option A retains this proxy as an accepted project limitation, including the flagged cell `20.5_73.5`. A future change would require relabeling and rerunning all results.
 
 ### Geographic review of the region proxy
 
@@ -50,7 +50,7 @@ Figure R. All 26 grid centres on the actual Maharashtra boundary, colored by the
 
 The map shows 5 coastal labels along the western longitude column, 3 hilly labels in the next column below 20°N, and 18 plains labels elsewhere. All centres pass the polygon check, the stored lookup agrees with the processed feature-cell metadata, and it exactly implements the documented proxy. Visual inspection makes the limitation explicit: these are rectangular coordinate bands, not a coastline-distance or terrain classification. In particular, the northern coastal-assigned point at 20.5°N, 73.5°E and the hilly band merit geographic review rather than automatic acceptance as physical terrain types.
 
-This completes a positional and implementation sanity check, not geographic validation. The boundary map has no elevation or terrain layer and cannot establish whether the names are physically accurate. The lookup and model remain unchanged; the team still needs to endorse the proxy or authorize a geographic revision with relabeling and retraining.
+This completes a positional and implementation sanity check, not geographic validation. The boundary map has no elevation or terrain layer and cannot establish whether the names are physically accurate. Project decision (Option A, 1 October 2026): retain the coordinate proxy as an explicitly accepted limitation for this mini project. Region assignment does not use measured coastal distance or elevation. Cell `20.5_73.5` remains labeled coastal and is flagged as a known questionable geographic assignment; its actual coastal distance has not been measured in this analysis. Acceptance of the proxy does not validate that physical label. The lookup and trained model remain unchanged, with no relabeling or retraining. A terrain-based reassignment is deferred to future work. The original approved revision-2 spec left the region assignment rule open and did not prescribe 50 km/600 m thresholds.
 
 ## 5. Pipeline and experiment
 
@@ -95,6 +95,14 @@ Figure 1. Training-fold versus leave-one-year-out accuracy and macro-F1 with Euc
 | --- | --- | --- | --- | --- |
 | KNN | 0.5999 | N/A | 0.9992 | 0.0000 |
 | Majority baseline | 0.3330 | N/A | 0.9978 | 0.0000 |
+
+### Why validation macro-F1 differs from test macro-F1
+
+The cross-validation score **0.5533** and held-out test score **0.5999** use the same fixed three-class macro-F1 definition. Unlike the 0.80/0.90/0.60 comparison, this difference is not a change in which classes are averaged.
+
+Cross-validation takes an unweighted mean of eight scores, each computed on one held-out year from 2015–2022 with a pipeline fitted on the other seven years. The final pipeline is then fitted on all eight training years, and the test score is computed once on the pooled 2023–2025 observations. Thus the evaluation years, fitting sets and aggregation differ; macro-F1 on pooled predictions need not equal the mean of per-year macro-F1 scores.
+
+The test score is 0.0465 higher. Year-to-year weather and rare-class composition can change how difficult the evaluation is, and the final fit uses more training data than each fold fit. These are plausible contributors, not separately measured causes. With only 21 Heatwave test cases and fold standard deviation around 0.105, the higher test score does not establish a systematic improvement or invalidate the validation result. Test outcomes were not used to select the configuration.
 
 ### Why 0.80, 0.90 and 0.60 are all different metrics
 

@@ -55,7 +55,7 @@ For artifact-only training, use `python -m heatwave.cli train --jobs 4`. For a f
 
 ## Region lookup and data contract
 
-The included region rule is a transparent, coarse **project proxy requiring team review**: longitude <74°E is coastal; 74≤longitude<75°E and latitude<20°N is hilly; all remaining Maharashtra grid centres are plains. It is not a terrain-derived classification or an IMD region lookup. The authoritative editable file has columns `cell_id,region_type`. Preparation preserves it rather than overwriting it. If you change it, rerun preparation, notebook and slide generation.
+The included region rule is a transparent, coarse **project proxy retained as an accepted limitation (Option A)**: longitude <74°E is coastal; 74≤longitude<75°E and latitude<20°N is hilly; all remaining Maharashtra grid centres are plains. It is not a terrain-derived classification or an IMD region lookup. The authoritative editable file has columns `cell_id,region_type`. Preparation preserves it rather than overwriting it. If you change it, rerun preparation, notebook and slide generation.
 
 The raw input contract is `date,lat,lon,region_type,max_temp,normal_temp`. FeatureBuilder computes departure and the 365-day seasonal terms. The feature handoff also stores `cell_id,departure,label`. The app never accepts departure as an independent input.
 
@@ -84,4 +84,6 @@ The report explains the different F1 scores: **0.80 Heatwave-only F1**, **0.8997
 
 `python scripts/refresh_review.py` regenerates the map, review tables and written report from saved evidence without retraining. The same review is included as an executed section of `notebooks/analysis.ipynb` and its source generator. New artifacts are `region_lookup_map.png`, `k_fold_review.csv`, `noise_severe_support.csv`, and `sanity_review.json` under `reports/results/`.
 
-The geographic review checks positions and proxy consistency on the actual state boundary. It does **not** validate terrain or distance from the coast. In particular, the northern coastal assignment and hilly column warrant team review. The existing model artifact and region lookup remain unchanged.
+The geographic review checks positions and proxy consistency on the actual state boundary. It does **not** validate terrain or distance from the coast. Option A, selected on 1 October 2026, retains the proxy as an explicitly accepted limitation. Cell `20.5_73.5` is flagged as a questionable coastal assignment, with no measured coastal distance claimed. Geographic refinement is deferred to future work. The existing model artifact and region lookup remain unchanged.
+
+CV macro-F1 (0.5533) averages eight held-out-year scores from seven-year fits. Test macro-F1 (0.5999) evaluates pooled 2023–2025 observations after an eight-year fit. Both use the same three-class definition; the data and aggregation differ. See the report for the interpretation and rare-class caveat.

@@ -69,7 +69,7 @@ These rules are our operationalisation and have not been verified against IMD's 
 
 The Severe class has zero support in both splits. Training provides no Severe neighbours, so the deployed KNN cannot output Severe. With the fixed three-class macro-F1 convention, even perfect predictions of observed classes have a maximum macro-F1 of 2/3. Zero-support class metrics in raw sklearn tables are placeholders, not measured Severe performance. Severe recall is explicitly N/A here and in the headline evaluation. There are only 21 Heatwave test observations, so one error changes Heatwave recall by approximately 4.76 percentage points. The team should review task feasibility before presenting this as a complete three-class classifier. We retain the locked split and rules, and disclose this limitation rather than altering them after seeing test results.
 
-The lookup in `data/region_lookup.csv` uses this transparent project proxy: longitude <74°E is coastal; 74≤longitude<75°E and latitude<20°N is hilly; remaining cells are plains. It is a coarse location proxy without elevation or coastline-distance validation. It needs team review. Changing it requires relabeling and rerunning all results.
+The lookup in `data/region_lookup.csv` uses this transparent project proxy: longitude <74°E is coastal; 74≤longitude<75°E and latitude<20°N is hilly; remaining cells are plains. It is a coarse location proxy without elevation or coastline-distance validation. Option A retains this proxy as an accepted project limitation, including the flagged cell `20.5_73.5`. A future change would require relabeling and rerunning all results.
 
 ## 5. Pipeline and experiment
 
@@ -98,6 +98,14 @@ Figure 2. Secondary K curves keep the selected metric and weighting fixed. With 
 ''' if (out / "k_curves_selected.png").exists() else '') + f'''## 6. Held-out results
 
 {markdown_table(metrics)}
+
+### Why validation macro-F1 differs from test macro-F1
+
+The cross-validation score **{run['cv_macro_f1']:.4f}** and held-out test score **{metrics.loc['KNN','macro_f1']:.4f}** use the same fixed three-class macro-F1 definition. Unlike the 0.80/0.90/0.60 comparison, this difference is not a change in which classes are averaged.
+
+Cross-validation takes an unweighted mean of eight scores, each computed on one held-out year from 2015–2022 with a pipeline fitted on the other seven years. The final pipeline is then fitted on all eight training years, and the test score is computed once on the pooled 2023–2025 observations. Thus the evaluation years, fitting sets and aggregation differ; macro-F1 on pooled predictions need not equal the mean of per-year macro-F1 scores.
+
+The test score is {metrics.loc['KNN','macro_f1'] - run['cv_macro_f1']:.4f} higher. Year-to-year weather and rare-class composition can change how difficult the evaluation is, and the final fit uses more training data than each fold fit. These are plausible contributors, not separately measured causes. With only 21 Heatwave test cases and fold standard deviation around 0.105, the higher test score does not establish a systematic improvement or invalidate the validation result. Test outcomes were not used to select the configuration.
 
 ### KNN per-class metrics
 

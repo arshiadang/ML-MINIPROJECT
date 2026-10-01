@@ -184,6 +184,7 @@ elif page == "Model evidence":
     b.metric("Two-class macro-F1",f"{two:.2f}")
     c.metric("Three-class macro-F1",f"{three:.2f}")
     d.metric("Severe recall","N/A",help="No Severe observations in the original test labels.")
+    st.info("CV macro-F1 0.5533 averages eight held-out training-year scores from seven-year fits. Test macro-F1 0.5999 scores pooled 2023–2025 observations after fitting all eight training years. Both use the same three-class definition; different years, training sizes and aggregation explain why they need not match.")
     st.caption("0.80 scores Heatwave alone. 0.90 averages Normal and Heatwave. 0.60 includes a zero contribution for unsupported Severe under the fixed three-class scoring convention.")
     perf,kview,noise,errors = st.tabs(["Performance","K selection","Reading noise","Error locations"])
     with perf:
@@ -227,7 +228,7 @@ elif page == "Region map":
     st.pydeck_chart(region_deck(cells),use_container_width=True)
     st.caption("Hover over a cell to see its ID and region. Teal: coastal. Brown: hilly. Blue: plains. Boundary: geoBoundaries / DataMeet, CC BY 2.5 India. No basemap or elevation layer.")
     st.markdown("**Map review:** all 26 centres fall inside the Maharashtra polygon and agree with the stored lookup. The cutoff bands are visibly coarse. The northern coastal-assigned cell (20.5°N, 73.5°E) and the hilly column need geographic validation before treating these names as terrain facts.")
-    st.info("The positional sanity check is complete. Geographic validation remains open: no coastline-distance or elevation evidence supports these categories yet. The lookup and trained model have not changed.")
+    st.info("Decision: retain the coordinate proxy as an accepted mini-project limitation (Option A). Cell 20.5_73.5 is a flagged geographic assignment, not a validated coastal location. No measured coastal distance or elevation is used. The lookup and model remain unchanged; geographic refinement is future work.")
     with st.expander("Labelled map and full cell lookup"):
         figure("region_lookup_map")
         st.dataframe(cells[["cell_id","lat","lon","region_type"]],hide_index=True,use_container_width=True)
